@@ -1,6 +1,6 @@
 # OOPC
 
-## Tasks 
+## Tasks  (lab1)
 1- Write a struct Employee with : id , name , salary.
 
 
