@@ -74,7 +74,7 @@ public :
     }
     ~Employee()
     {
-        delete name;
+        free(name);
     }
 public :
     void setSalary(int salary)
@@ -125,7 +125,77 @@ public :
 
     };
 
+public :
+Employee operator++()
+{
+ (this->id)++;
+  this->salary++;
 
+ return *this;
+};
+
+
+Employee operator++(int d)
+{
+    Employee emp=*this;
+  this->id++;
+ this->salary++;
+ return emp;
+};
+
+Employee operator+(Employee C)
+{
+    Employee temp;
+    temp.id=this->id +C.id;
+    temp.salary=this->salary +C.salary;
+    cout << "samy";
+    return temp;
+}
+
+Employee operator+(int sal)
+{
+    Employee temp;
+    temp.id=this->id;
+    temp.salary=this->salary +sal;
+
+    return temp;
+}
+
+operator int()
+{
+ return this->id;
+}
+
+operator char*()
+{
+ return this->getName();
+}
+Employee operator+(char* str)
+{
+
+        char* var = (char *)malloc(strlen(str)+1+strlen(this->getName()));// 1 mlahash lazma
+
+     strcpy(var,str);
+    strcat(var,this->getName());
+    Employee temp;
+     temp=this->id;
+     temp=this->salary;
+     temp.setName(var);
+     free(var);
+
+    return temp;
+}
+Employee& operator=(Employee emp)
+{
+ id = emp.id;
+ salary= emp.salary;
+    setName(emp.getName());
+ return *this;
+}
+int operator==(Employee emp)
+{
+ return ((id==emp.id)&&(salary==emp.id)&&strcmp(this->getName(),emp.getName()));
+}
 };
 
 
@@ -170,6 +240,16 @@ void fillEmply(struct Employee* emp,int sizeofArray)
     system("cls");
 
 }
+ Employee operator+ (int n, Employee emp)
+{
+     return (emp + n);
+
+}
+ Employee operator+ (char* str, Employee emp)
+{
+     return (emp + str);
+
+}
 
 Employee ReturnClass()
 {
@@ -186,6 +266,7 @@ void swaping(int &x, int &y)
 
     return;
 }
+
 int main()
 {
 
@@ -210,15 +291,85 @@ int main()
     Employee e4(100,9000,"ahmed");
     printEmply(&e4,1);
 
-    cout<< "Return function" <<endl;
+    cout<< "Equlity with e1" <<endl;
 
-    printEmply(&ReturnClass(),1);
+    Employee temp;
 
-
-
-
+    temp=e1;
 
 
-    cout << "Hello world!" << (int)e1 endl;
+    printEmply(&temp,1);
+
+cout<< "add e1+e2" <<endl;
+
+    temp=e1+e2;
+
+
+    printEmply(&temp,1);
+
+
+cout<< "add e1+1000" <<endl;
+
+    temp=e1+1000;
+
+
+    printEmply(&temp,1);
+
+cout<< "add 1000+e1" <<endl;
+
+    temp=1000+e1;
+
+
+    printEmply(&temp,1);
+
+
+
+cout<< "add e1+ahmed" <<endl;
+
+    temp=e1+"ahmed";
+
+
+    printEmply(&temp,1);
+
+cout<< "add ahmed+e2" <<endl;
+
+    temp="ahmed"+e2;
+
+
+    printEmply(&temp,1);
+
+
+
+
+
+cout<< "add e++" <<endl;
+
+    temp=e1++;
+
+
+    printEmply(&temp,1);
+
+
+
+cout<< "add ++e" <<endl;
+
+    temp=++e1;
+
+
+    printEmply(&temp,1);
+
+
+
+
+
+
+
+cout<< "casting " <<endl;
+
+        cout << "X: " <<  (int)e1 <<endl;
+        cout <<"string : "<< (char*)e1<< endl;
+
+
+
     return 0;
 }
