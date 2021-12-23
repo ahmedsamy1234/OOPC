@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1640252233 source:c:\labc_oop\lab5\main.cpp
+	<iostream.h>
+	<string.h>
+	<stdlib.h>
+
